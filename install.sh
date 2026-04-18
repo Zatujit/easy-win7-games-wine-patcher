@@ -191,7 +191,7 @@ script:
   installer: []
 EOF
 
-    $LUTRIS_CMD -i "$TMP_YML"
+    $LUTRIS_CMD -i "$TMP_YML" &
   else
     echo "Skipping Lutris entry"
   fi
