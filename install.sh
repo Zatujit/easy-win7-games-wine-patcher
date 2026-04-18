@@ -23,6 +23,8 @@ MICROSOFT_GAMES_LINUX="$WINE_PREFIX/drive_c/Program Files/Microsoft Games"
 
 DESKTOP_DIR="$HOME/.local/share/applications"
 
+DEBUG_WINE_OPT="-all,err+all"
+
 declare -A GAMES=(
   [CHESS]="Chess"
   [FREECELL]="FreeCell"
@@ -85,8 +87,8 @@ unzip "$RESHACKER_ZIP"
 # Install win7games in headless mode
 
 echo "===== Downloading win7games aero headlessly ====="
-WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_BOOT"
-WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "Windows7Games_for_Windows_11_10_8.exe" /S
+WINEDEBUG="$DEBUG_WINE_OPT" WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_BOOT"
+WINEDEBUG="$DEBUG_WINE_OPT" WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "Windows7Games_for_Windows_11_10_8.exe" /S
 
 for game in "${!GAMES[@]}"; do
   name="${GAMES[$game]}"
@@ -114,13 +116,13 @@ for game in "${!GAMES[@]}"; do
   fi
 
   # Extract resources
-  WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "$RESHACKER_EXE" -open "$MUI_FILE" -save "$RSC_WIN" -action extract -mask ",,," -log "$WIN_PATH\\extract-res.log"
+  WINEDEBUG="$DEBUG_WINE_OPT" WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "$RESHACKER_EXE" -open "$MUI_FILE" -save "$RSC_WIN" -action extract -mask ",,," -log "$WIN_PATH\\extract-res.log"
 
   # Patch
   cp "$SCRIPT_PATH" "$LINUX_PATH/script.txt"
 
   # Execute script
-  WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "$RESHACKER_EXE" -script "$WIN_PATH\\script.txt"
+  WINEDEBUG="$DEBUG_WINE_OPT" WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "$RESHACKER_EXE" -script "$WIN_PATH\\script.txt"
 done
 
 echo "===== Verifying hashes ====="
@@ -144,10 +146,10 @@ for game in "${!GAMES[@]}"; do
   expected=$(awk '{print $1}' "$HASHES_DIR/$name.md5sum")
 
   if [ "$actual" = "$expected" ]; then
-    printf "%-20s [V] $name\n"
+    echo " [V] $name\n"
   else
     echo "$actual $expected"
-    printf "%-20s [X] $name      !!! Hash mismatch\n"
+    echo " [X] $name      !!! Hash mismatch\n"
   fi
 done
 
