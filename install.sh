@@ -21,6 +21,8 @@ HASHES_DIR="hashes"
 MICROSOFT_GAMES_WIN="C:\\Program Files\\Microsoft Games"
 MICROSOFT_GAMES_LINUX="$WINE_PREFIX/drive_c/Program Files/Microsoft Games"
 
+DESKTOP_DIR="$HOME/.local/share/applications"
+
 declare -A GAMES=(
   [CHESS]="Chess"
   [FREECELL]="FreeCell"
@@ -88,10 +90,10 @@ WINEARCH=win64 WINEPREFIX="$WINE_PREFIX" "$WINE_EXEC" "Windows7Games_for_Windows
 
 for game in "${!GAMES[@]}"; do
   name="${GAMES[$game]}"
-  
+
   echo "===== Patching $name ====="
 
-  if [ "$game" = "PURBLEPLACE" ]; then
+  if [ "$name" = "PurblePlace" ]; then
     WIN_PATH="$MICROSOFT_GAMES_WIN\\Purble Place"
     LINUX_PATH="$MICROSOFT_GAMES_LINUX/Purble Place"
   else
@@ -149,6 +151,41 @@ for game in "${!GAMES[@]}"; do
   fi
 done
 
+read -p "Desktop entries? [Y/n/a (all)]: " answer
+answer=${answer:-Y}
+
+if [[ "$answer" =~ ^[Yy]$ ]] || [[ "$answer" =~ ^[Aa]$ ]]; then
+  for game in "${!GAMES[@]}"; do
+    name="${GAMES[$game]}"
+    if [ "$game" = "PURBLEPLACE" ]; then
+      LINUX_PATH="$MICROSOFT_GAMES_LINUX/Purble Place"
+    else
+      LINUX_PATH="$MICROSOFT_GAMES_LINUX/$name"
+    fi
+
+    if [[ "$answer" =~ ^[Aa]$ ]]; then
+      add_desktop=Y
+    else
+      read -p "Add $name to Desktop? [Y/n]: " add_desktop
+      add_desktop=${add_desktop:-Y}
+    fi
+
+    if [[ "$add_desktop" =~ ^[Yy]$ ]]; then
+      cat > "$DESKTOP_DIR/win7-$name.desktop" <<EOF
+[Desktop Entry]
+Name=$name
+Exec=env WINEPREFIX=$WINE_PREFIX WINEARCH=win64 $PWD/$WINE_EXEC "$LINUX_PATH/${name}_patched.exe"
+Type=Application
+Icon=wine
+StartupNotify=false
+Categories=Game;
+EOF
+      chmod +x "$DESKTOP_DIR/win7-$name.desktop"
+      echo "Desktop entry created for $name"
+    fi
+  done
+fi
+
 read -p "Lutris config? [Y/n]: " answer
 
 if [[ ! "$answer" =~ ^[Yy]$ ]]; then
@@ -176,6 +213,13 @@ for game in "${!GAMES[@]}"; do
   answer=${answer:-Y}
 
   if [[ "$answer" =~ ^[Yy]$ ]]; then
+
+    if [ "$game" = "PURBLEPLACE" ]; then
+      LINUX_PATH="$MICROSOFT_GAMES_LINUX/Purble Place"
+    else
+      LINUX_PATH="$MICROSOFT_GAMES_LINUX/$name"
+    fi
+
     TMP_YML="$LUTRIS_DIR/lutris-install-$name.yml"
     cat > "$TMP_YML" <<EOF
 name: "$name"
@@ -185,8 +229,8 @@ version: "Local"
 runner: wine
 script:
   game:
-    exe: "$MICROSOFT_GAMES_LINUX/$name/${name}_patched.exe"
-    working_dir: "$MICROSOFT_GAMES_LINUX/$name"
+    exe: "$LINUX_PATH/${name}_patched.exe"
+    working_dir: "$LINUX_PATH"
     prefix: "$WINE_PREFIX"
   installer: []
 EOF
@@ -196,4 +240,3 @@ EOF
     echo "Skipping Lutris entry"
   fi
 done
-
