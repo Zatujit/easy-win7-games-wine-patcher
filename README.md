@@ -5,6 +5,7 @@
 - Kron4ek Wine-11.6-amd64 build is used for running the windows executables.
 - Adding desktop entries option.
 - Automatic Lutris configuration possible (tested on Lutris Flatpak & native deb package for now).
+- Works on Ubuntu 24 LTS (tried on Linux Mint 22, impossible to run) : will try to see if I can rather use umu-launcher
 
 I verified that the hashes using the GUI method and the CLI are stricly identical.
 
