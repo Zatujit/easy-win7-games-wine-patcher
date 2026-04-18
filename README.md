@@ -21,6 +21,9 @@ For instance, to run chess :
 WINEARCH=win64 WINEPREFIX="~/win7-classic-games" "wine-11.6-amd64/bin/wine" "~/win7-classic-games/drive_c/Program Files/Microsoft Games/Chess/Chess_patched.exe
 ```
 
+=== Parser ===
+- `generate_reshacker_lines.py` generates the lines of the actions needed to embed the MUI file into the EXE file. It requires `pe_tools` installed (available as pip package)
+
 === Disclaimer ===
 
 All the above software is copyrighted by its respective copyright holders. We do not own it, or sell or license it to you. Use it under your own responsibility. This software is distributed 'as-is', without any express or implied warranty.
