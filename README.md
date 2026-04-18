@@ -1,6 +1,6 @@
 === Easy Win7 games patcher ===
 
-- Installs and patches the Win7 classic games suite for using it with Wine on Linux.
+- Installs and patches the Win7 classic games suite (from the Internet Archive / WinAero) for using it with Wine on Linux.
 - Reproducible, hashes of the patched files are verified.
 - Kron4ek Wine-11.6-amd64 build is used for running the windows executabless.
 - Automatic Lutris configuration possible (tested on Lutris Flatpak for now).
@@ -11,6 +11,7 @@ Run
 ```bash
 ./install.sh
 ```
+
 to install the games and patch them using ResourceHacker CLI.
 
 The WINE prefix is installed at `~/win7-classic-games`.
@@ -21,5 +22,6 @@ WINEARCH=win64 WINEPREFIX="~/win7-classic-games" "wine-11.6-amd64/bin/wine" "~/w
 ```
 
 === Disclaimer ===
+
 All the above software is copyrighted by its respective copyright holders. We do not own it, or sell or license it to you. Use it under your own responsibility. This software is distributed 'as-is', without any express or implied warranty.
 
