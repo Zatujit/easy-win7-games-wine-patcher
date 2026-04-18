@@ -1,0 +1,63 @@
+[FILENAMES]
+Open= "chess.exe"
+SaveAs= "Chess_patched.exe"
+Log= "Chess_log.log"
+[COMMANDS]
+-addoverwrite "Chess_resources.res", DATA,__GDF_XML,1033
+-addoverwrite "Chess_resources.res", MENU,129,1033
+-addoverwrite "Chess_resources.res", MENU,189,1033
+-addoverwrite "Chess_resources.res", DIALOG,9,1033
+-addoverwrite "Chess_resources.res", DIALOG,160,1033
+-addoverwrite "Chess_resources.res", DIALOG,164,1033
+-addoverwrite "Chess_resources.res", DIALOG,167,1033
+-addoverwrite "Chess_resources.res", DIALOG,187,1033
+-addoverwrite "Chess_resources.res", DIALOG,188,1033
+-addoverwrite "Chess_resources.res", DIALOG,190,1033
+-addoverwrite "Chess_resources.res", DIALOG,191,1033
+-addoverwrite "Chess_resources.res", DIALOG,233,1033
+-addoverwrite "Chess_resources.res", DIALOG,234,1033
+-addoverwrite "Chess_resources.res", DIALOG,237,1033
+-addoverwrite "Chess_resources.res", DIALOG,239,1033
+-addoverwrite "Chess_resources.res", DIALOG,241,1033
+-addoverwrite "Chess_resources.res", DIALOG,243,1033
+-addoverwrite "Chess_resources.res", DIALOG,245,1033
+-addoverwrite "Chess_resources.res", DIALOG,246,1033
+-addoverwrite "Chess_resources.res", DIALOG,247,1033
+-addoverwrite "Chess_resources.res", DIALOG,248,1033
+-addoverwrite "Chess_resources.res", DIALOG,303,1033
+-addoverwrite "Chess_resources.res", DIALOG,304,1033
+-addoverwrite "Chess_resources.res", DIALOG,305,1033
+-addoverwrite "Chess_resources.res", DIALOG,309,1033
+-addoverwrite "Chess_resources.res", DIALOG,500,1033
+-addoverwrite "Chess_resources.res", DIALOG,501,1033
+-addoverwrite "Chess_resources.res", DIALOG,502,1033
+-addoverwrite "Chess_resources.res", DIALOG,503,1033
+-addoverwrite "Chess_resources.res", DIALOG,504,1033
+-addoverwrite "Chess_resources.res", DIALOG,505,1033
+-addoverwrite "Chess_resources.res", DIALOG,506,1033
+-addoverwrite "Chess_resources.res", DIALOG,507,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,7,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,8,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,9,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,10,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,11,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,12,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,13,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,14,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,15,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,16,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,19,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,20,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,66,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,69,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,70,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,376,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,377,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,476,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,3884,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,3885,1033
+-addoverwrite "Chess_resources.res", STRINGTABLE,3886,1033
+-addoverwrite "Chess_resources.res", ACCELERATORS,173,1033
+-addoverwrite "Chess_resources.res", ACCELERATORS,174,1033
+-addoverwrite "Chess_resources.res", VERSIONINFO,1,1033
+
